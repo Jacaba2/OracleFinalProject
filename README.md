@@ -1,11 +1,6 @@
 Intro to Smart Contract Final Project
 By Albert Cho, Alex Campbell, Ha Trang Mai
 
-Programs Need to Download
-•	Visual Studios Code (Install Solidity)
-•	Ganache 
-•	Truffle
-
 Introduction:
 For this project, we were able to build Oracle using Visual Studios code. We were able to create a smart contract project using truffle to test and deploy our codes. This project allowed us to deploy our contract to a local blockchain instance using Ganache and deploy it into the Ethereum testnets. 
 
@@ -32,3 +27,39 @@ Script: This contract when executed from the command line, it generates a privat
 Utils: The exported ‘loadAccount’ function sums up the setup required to load an account for interacting with the specified chain using Loom Network's tools and utilities. It configures the necessary middleware and provides a ‘Web3’ instance connected via a 'LoomProvider’ that allows interaction with the blockchain using the loaded account.
 Client.js: It loads an account using the ‘loadAccount’ function from the ‘common.js’ file, which reads a private key file to set up a web3 provider and client. Client.js interaction with smart contract is it retrieves the network ID and oracle address from the JSON files, calls the ‘setOracleInstanceAddress’ method of callerContract to set the address of the Oracle instance, and sets an interval to periodically call the updateEthPrice method of callerContract, updating the Ethereum price at regular intervals based on the specified sleep interval.
 EthPriceOracle.js: There is a backend service hitting the Binance API for the current ETH/USD price and submitting that to this contract. The client consistently sends requests to the blockchain at set intervals, while the backend service processes these requests in batches within a queue, also on a scheduled interval. This setup ensures a continuous update of Ethereum's value in USD on the blockchain by regularly querying the Binance API and syncing the value within the specified time frame.
+
+Steps to interact with project:
+
+Prerequisites:
+1)	Install Visual studio Code
+a.	In VSC extensions download solidity, JavaScript (ES6), JavaScript Debugger, Node.js Modules, Command Pallet NPM 
+2)	Install Node.js
+3)	Download Github folder to computer
+4)	Download Ganache UI
+5)	
+Getting set up:
+1)	Open project in VSC (File -> Open Folder)
+2)	In cmd, navigate to your project directory (cd ./FolderLocation/EthPriceOracle) and type the following:
+a.	npm install web3
+b.	npm install web3-providers-ws
+c.	npm install @truffle/hdwallet-provider
+d.	npm install axios
+e.	npm install bn.js
+f.	npm install dotenv
+g.	npm install truffle
+
+4)	Ganache UI
+a.	Create a new project Ganache UI Blockchain and make the local address is HTTP://127.0.0.1:7545
+b.	Navigate to the “contract” tab and add both truffle-config.js files into the project. Save these changes. 
+c.	Go back to the “Address” tab and copy the first address and paste it into the value for “OWNER_ADDRESS” in the .env file
+d.	Copy the second address and paste it into the “ORACLE_ADDRESS” in the .env file
+
+6)	Truffle – deploying smart contracts
+a.	In the cmd, make sure you are navigated to the project directory
+b.	Type in npm run deploy:local. If everything worked, you should be able to see 2 transactions taken from your first account in ganache. These are the transactions of you deploying your 2 smart contracts.
+
+8)	Running the project
+a.	In VSC, go ahead click run -> run without Debugging
+i.	If all is working correctly, you should see “* New PriceUpdated event. ethPrice: 12345600000000000.”
+
+Note: In “EthPriceOracle.js” ethPrice is only being set to “12345600…” just as a test. We attempted to use an API to retrieve a value but had difficulties with using both axios and the fetch function. 
