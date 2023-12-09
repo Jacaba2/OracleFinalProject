@@ -69,6 +69,7 @@ a.	Create a new project Ganache UI Blockchain and make the local address is HTTP
 b.	Navigate to the “contract” tab and add both truffle-config.js files into the project. Save these changes. 
 c.	Go back to the “Address” tab and copy the first address and paste it into the value for “OWNER_ADDRESS” in the .env file
 d.	Copy the second address and paste it into the “ORACLE_ADDRESS” in the .env file
+e.	Repeat steps c and d in the oracle/migration/2_eth_price_oracle.js file. The first address is the owner, the second address is the oracle
 
 #### Truffle – deploying smart contracts:
 a.	In the cmd, make sure you are navigated to the project directory
